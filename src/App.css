@@ -1,38 +1,232 @@
-.App {
-  text-align: center;
+*{
+    /* margin:0;
+    padding:0; */
+    
+}
+.box-logic{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    width: 380px;  
+    height:  721px ;
+    top: -1px;
+    /* padding:40px 24px 40px 24px; */
+    gap: 13px;
+    background-color:#86D3F4;
+}
+.Header{
+    width: 272px;
+    height: 60px;
+    font-family:Roboto;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 30px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+input[type='tel']{
+    background: transparent;
+    border:none;
+    width: 260px;
+    height: 38px;
+    font-family: Roboto;
+    font-size: 32px;
+    font-weight:700;
+    line-height: 37.5px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.subText{
+    width: 260px;
+    height: 38px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.numFrame{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 284px;
+    height: 278px;
+    /* padding: 20px 0px 20px 0px; */
+    gap: 10px;
+}
+.rowOne,.rowTwo,.rowThree,.rowFour{
+    display:flex;
+    justify-content:space-between;
+    width: 284px;
+    height:52px;
+    gap: 10px;
+}
+button {
+    background-color: transparent;
+    color:black;
+    width: 88px;
+    height: 52px;
+    padding:12px 30px 12px 30px;
+    gap: 10px;
+    font-size: 28px;
+    border:2px solid black; 
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+button:hover{
+    background-color: black;
+    color:white;
+}
+.delete{
+    background-color: transparent;
+    width: 186px;
+    height:52px;
+    padding: 16px 39px 16px 39px;
+    border:2px solid black; 
+    gap: 10px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+.selectedDiv{
+    display: flex;
+    align-items: center;
+    width: 284px;
+    height:52px;
+    gap: 10px
+}
+.scalesDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 52px;
+    /* padding: 10px; */
+    /* border: 1px solid; */
+    gap: 10px;
+
+}
+input[type='checkbox']{
+    width: 40px;
+    height: 40px;
+    border: 1px solid red;
+}
+.label{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 214px;
+    height: 52px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.41px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: #565656; 
+    /* border: 1px solid; */
+    
+
+}
+#unCorrect{
+    width: 284px;
+    /* height: 52px; */
+    border-radius:16px 16px 0px 16px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
+    color:#EA0000;
+}
+.close{
+    position: relative;
+    width: 88px;
+    height: 52px;
+    right: 15px;
+    bottom: 325px;
+    background-color: #FFFFFF;
+    border: 3px solid black;
+
+}
+.closeElement{
+    position: absolute;
+    width: 28.68px;
+    top: -57px;
+    left: 24.28px;
+    border: 3px;
+    transform: rotate(-45deg);
+    font-size: 48px;
+    cursor: pointer;
+    transition: 0.3s;
+    
+}
+.close:hover{
+    background-color: black;
+    color:white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+.ok{
+    width: 284px;
+    height: 52px;
+    padding: 16px 19px 16px 19px;
+    border: 1px solid #4E4E4E;
+    color: #4E4E4E;
+    gap: 10px;
+    font-family: Roboto;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 19px;
+    letter-spacing: 0em;
+    text-align: center;
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
+.trueAccess{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 284px;
+    height:  123px;
+    top: 264px;
+    /* left: 48px; */
+    gap: 15px;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
+.z{
+font-family: Roboto;
+font-size: 32px;
+font-weight: 700;
+line-height: 38px;
+letter-spacing: 0em;
+text-align: center;
+padding: 0;
+margin:0;
 
-.App-link {
-  color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.zp{
+    padding: 0;
+    margin:0;
+    width: 284px;
+    height: 32px;   
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    letter-spacing: 0em;
+    text-align: center;
+    
 }
