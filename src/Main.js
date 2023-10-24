@@ -7,7 +7,7 @@ export default function Main (){
     let string = "+7(___)___-__-__"
     const apiKey = '3b2d112bc362f0d189685515dfbf097e';
     const russianPhoneRegex = /^(\+7|8)[ -]?\(?\d{3}\)?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}$/;
-    let f = '_' || ' ' || null;
+    let f = '_' ||  null ;
 
     const [input, setInput] = useState(string)//phone  input 
     const [correct,setCorrect] = useState(true) // validatation of correction number or not 
@@ -23,25 +23,26 @@ export default function Main (){
         }
         if (newValue === 'backspace') {
         setInput(input.slice(0, -1));
-        // setInput(input.replace(/^[0-9]$/g , '_'));
-        setInput(string)  
+        // setInput(string)
         if(input.length === 0){
             setInput(string)
         }
         } else {
             const updatedString = input.replace(f, newValue);
             setInput(updatedString);
-            if(input.length === 0){
+            if(input.length < 16){
+                setInput(input + newValue);
+            }
+            if(input.length === 2 ){
                 setInput(string)
             }
         }
     };
-    const handleChange = (e)=>{
-        // let value = e.target.value
-        // const updatedString = input.replace(f, value);
-        // setInput(updatedString);
+
+    const handleChange = (e)=>{ 
         setInput(e.target.value)
     }
+
     const validatePhoneNumber = async () => {
         if(russianPhoneRegex.test(input) && check === true){
             console.log("okeeey" , input)
@@ -52,6 +53,9 @@ export default function Main (){
                 setValidationResult(response.data);
                 setValid(response.data.valid)
                 console.log('validate', validationResult)
+                // setTimeout(() => {
+                //     setValid(false)
+                // }, 6000);
                 } catch (error) {
                 console.error('Error validating phone number:', error);
                 }
@@ -61,11 +65,37 @@ export default function Main (){
             setCorrect(false)
             setTimeout(()=>{
                 setCorrect(true)
+                setInput(string)
             },3000)
         }
     };
 
-useEffect(() => {
+    useEffect(()=>{
+            const handleKeyPress=(event) =>{
+                if (event.key >= '0' && event.key <= '9') {
+                    const updatedString = input.replace(f, event.key);
+                    setInput(updatedString);
+                    if(input.length < 16){
+                        // setInput("+7")
+                        setInput(input + event.key);
+                    }
+            }else if (event.key === 'Backspace') {
+                        setInput(input.slice(0, -1));
+                        if(input.length === 0){
+                            setInput(string)
+                        }
+            } 
+            // else if (event.key === 'Enter'){
+            //             setCheck(true)
+            //             }
+            }
+            document.addEventListener("keydown", handleKeyPress );
+            return () => {
+                              document.removeEventListener('keydown', handleKeyPress);
+                    };   
+    },[input])
+
+    useEffect(()=>{
     let inactivityTimer;
     let countdownTimer;
     const resetTimers = () => {
@@ -101,38 +131,7 @@ useEffect(() => {
     };
     }, []);
 
-//   //try -> navigation betwwen button by 
-//   const closeButtonRef = useRef(null);
-//   const confirmButtonRef = useRef(null);
-//   const inputRef = useRef(null);
-//   const [inputValue, setInputValue] = useState('');
-// useEffect(() => {
-//     const handleKeyPress = (event) => {
-//       if (event.key === 'ArrowRight') {
-//         confirmButtonRef.current.focus();
-//       } else if (event.key === 'ArrowLeft') {
-//         closeButtonRef.current.focus();
-//       } else if (/^\d$/.test(event.key)) {
-//         // Поддержка ввода цифр
-//         setInputValue(inputValue + event.key);
-//       } else if (event.key === 'Backspace') {
-//         // Поддержка клавиши BACKSPACE для удаления цифр
-//         setInputValue(inputValue.slice(0, -1));
-//       } else if (event.key === 'Enter') {
-//         // Поддержка клавиши ENTER для выбора кнопки
-//         if (inputValue === '1') {
-//           closeButtonRef.current.click();
-//         } else if (inputValue === '2') {
-//           confirmButtonRef.current.click();
-//         }
-//       }
-//     };
-//     document.addEventListener('keydown', handleKeyPress);
-//     return () => {
-//       document.removeEventListener('keydown', handleKeyPress);
-//     };
-//   }, [inputValue]);
-    
+
     return(
         <>
         {/* <div className='count'> {countdown}</div> */}
@@ -161,6 +160,7 @@ useEffect(() => {
         :  <div className='box-logic'>
             <h1 className='Header'> Введите ваш номермобильного телефона</h1>
             <input type='tel' value={input} placeholder={string} 
+            readOnly
             // onClick={()=>{
             //     setInput('+7_')
             // }} 

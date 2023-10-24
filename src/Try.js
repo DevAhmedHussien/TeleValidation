@@ -1,42 +1,40 @@
 import React, { useState } from 'react';
 
 function ButtonPanel() {
-  const [selectedButton, setSelectedButton] = useState(0);
-  const totalButtons = 10;
 
-  const handleButtonClick = (buttonIndex) => {
-    setSelectedButton(buttonIndex);
-  };
+      //try -> navigation betwwen button by 
+//   const closeButtonRef = useRef(null);
+//   const confirmButtonRef = useRef(null);
+//   const inputRef = useRef(null);
+//   const [inputValue, setInputValue] = useState('');
 
-  const handleNextButton = () => {
-    setSelectedButton((prevSelected) => (prevSelected + 1) % totalButtons);
-  };
-
-  const handlePreviousButton = () => {
-    setSelectedButton((prevSelected) =>
-      prevSelected === 0 ? totalButtons - 1 : prevSelected - 1
-    );
-  };
-
-  const handleCloseButton = () => {
-    // Реализуйте логику закрытия UI
-    alert('UI закрыто');
-  };
-
-  const handleConfirmButton = () => {
-    // Реализуйте логику подтверждения
-    alert('Действие подтверждено');
-  };
-
-  const buttons = Array.from({ length: totalButtons }, (_, index) => (
-    <button
-      key={index}
-      onClick={() => handleButtonClick(index)}
-      className={selectedButton === index ? 'selected' : ''}
-    >
-      Кнопка {index + 1}
-    </button>
-  ));
+// useEffect(() => {
+//     const handleKeyPress = (event) => {
+//       if (event.key === 'ArrowRight') {
+//         confirmButtonRef.current.focus();
+//       } else if (event.key === 'ArrowLeft') {
+//         closeButtonRef.current.focus();
+//       } else if (/^\d$/.test(event.key)) {
+//         // Поддержка ввода цифр
+//         setInputValue(inputValue + event.key);
+//       } else if (event.key === 'Backspace') {
+//         // Поддержка клавиши BACKSPACE для удаления цифр
+//         setInputValue(inputValue.slice(0, -1));
+//       } else if (event.key === 'Enter') {
+//         // Поддержка клавиши ENTER для выбора кнопки
+//         if (inputValue === '1') {
+//           closeButtonRef.current.click();
+//         } else if (inputValue === '2') {
+//           confirmButtonRef.current.click();
+//         }
+//       }
+//     };
+//     document.addEventListener('keydown', handleKeyPress);
+//     return () => {
+//       document.removeEventListener('keydown', handleKeyPress);
+//     };
+//   } 
+//   , [inputValue]);
 
   return (
     <div>
