@@ -1,46 +1,59 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
-function InteractiveContent() {
-  const [inactive, setInactive] = useState(false);
+function ButtonPanel() {
+  const [selectedButton, setSelectedButton] = useState(0);
+  const totalButtons = 10;
 
-  useEffect(() => {
-    let inactivityTimer;
+  const handleButtonClick = (buttonIndex) => {
+    setSelectedButton(buttonIndex);
+  };
 
-    const resetTimer = () => {
-      clearTimeout(inactivityTimer);
-      inactivityTimer = setTimeout(() => {
-        setInactive(true);
-      }, 5000); // 5 seconds
-    };
+  const handleNextButton = () => {
+    setSelectedButton((prevSelected) => (prevSelected + 1) % totalButtons);
+  };
 
-    // Initialize the inactivity timer
-    resetTimer();
+  const handlePreviousButton = () => {
+    setSelectedButton((prevSelected) =>
+      prevSelected === 0 ? totalButtons - 1 : prevSelected - 1
+    );
+  };
 
-    // Add event listeners to reset the timer when there's user activity
-    window.addEventListener('mousemove', resetTimer);
-    window.addEventListener('keydown', resetTimer);
+  const handleCloseButton = () => {
+    // Реализуйте логику закрытия UI
+    alert('UI закрыто');
+  };
 
-    // Clean up event listeners when the component unmounts
-    return () => {
-      window.removeEventListener('mousemove', resetTimer);
-      window.removeEventListener('keydown', resetTimer);
-    };
-  }, []);
+  const handleConfirmButton = () => {
+    // Реализуйте логику подтверждения
+    alert('Действие подтверждено');
+  };
+
+  const buttons = Array.from({ length: totalButtons }, (_, index) => (
+    <button
+      key={index}
+      onClick={() => handleButtonClick(index)}
+      className={selectedButton === index ? 'selected' : ''}
+    >
+      Кнопка {index + 1}
+    </button>
+  ));
 
   return (
     <div>
-      {!inactive ? (
-        // Render your interactive content here
-        <div>
-          <h2>Interactive Content</h2>
-          {/* Add your interactive content components */}
-        </div>
-      ) : (
-        // Render the promotional video and banner
-        <h1>video ddddddddddddddddddddddddd</h1>
-      )}
+      <div>
+        <button onClick={handlePreviousButton}>Предыдущая</button>
+        <button onClick={handleNextButton}>Следующая</button>
+      </div>
+      <div>{buttons}</div>
+      <div>
+        <button onClick={handleCloseButton}>Закрыть</button>
+        <button onClick={handleConfirmButton}>Подтвердить</button>
+      </div>
     </div>
   );
 }
 
-export default InteractiveContent;
+export default ButtonPanel;
+
+
+

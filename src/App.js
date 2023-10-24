@@ -1,12 +1,12 @@
 
 import './App.css';
 import Main from './Main';
-// import InteractiveContent from'./Try'
+// import ButtonPanel from'./Try'
 
 function App() {
   return (
     <div className="App">
-      {/* <InteractiveContent/> */}
+      {/* <ButtonPanel/> */}
       <Main/>
     </div>
   );
