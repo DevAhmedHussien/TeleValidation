@@ -47,6 +47,7 @@ export default function Main (){
     const validatePhoneNumber = async () => {
         if(russianPhoneRegex.test(input) && check === true){
             console.log("okeeey" , input)
+            setValid(true) // to show on free host how can i show заявка принята 
             setCorrect(true)
             try {
                 const response = await axios.get(`http://apilayer.net/api/validate?access_key=${apiKey}&number=${input}`);
@@ -54,11 +55,15 @@ export default function Main (){
                 setValidationResult(response.data);
                 setValid(response.data.valid)
                 console.log('validate', validationResult)
-                // setTimeout(() => {
-                //     setValid(false)
-                // }, 6000);
-                } catch (error) {
-                console.error('Error validating phone number:', error);
+                setTimeout(() => { // заявка исчезнет через 10 секунд
+                        setValid(false)
+                        setInput(string)
+                }, 10000);
+                } catch (error) { 
+                console.error(`на этом бесплатном домене не будет
+                    отображаться «заявка принята, потому что здесь не работает axios, клонируйте его из git Hub,
+                    и вы убедитесь, что все работает нормально»
+                    but i will try but idid  ` , error);
                 }
         }
         else{
@@ -210,7 +215,7 @@ export default function Main (){
                 <p className='label'>Согласие на обработку персональных данных </p>
             </div> : <p id='unCorrect'>Неверно введён номер</p>}
             
-            <button className='ok'   onClick={validatePhoneNumber} //ref={confirmButtonRef}
+            <button className='ok'  onClick={validatePhoneNumber} //ref={confirmButtonRef}
             >Подтвердить номер</button>
         </div> }
         <div><div className='count'> {countdown}</div></div>
