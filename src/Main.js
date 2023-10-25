@@ -1,9 +1,10 @@
-import React, { useState,useEffect,useRef } from 'react';
+import React, { useState,useEffect} from 'react';
 import backgroundPhoto from './images/main.png'
 import TemporaryDrawer from './Drawer';
 import axios from 'axios';
 
 export default function Main (){
+
     let string = "+7(___)___-__-__"
     const apiKey = '3b2d112bc362f0d189685515dfbf097e';
     const russianPhoneRegex = /^(\+7|8)[ -]?\(?\d{3}\)?[ -]?\d{3}[ -]?\d{2}[ -]?\d{2}$/;
@@ -22,8 +23,8 @@ export default function Main (){
             setInput(string)
         }
         if (newValue === 'backspace') {
-        setInput(input.slice(0, -1));
-        // setInput(string)
+        // setInput(input.slice(0, -1));
+        setInput(string)
         if(input.length === 0){
             setInput(string)
         }
@@ -33,7 +34,7 @@ export default function Main (){
             if(input.length < 16){
                 setInput(input + newValue);
             }
-            if(input.length === 2 ){
+            if(input.length === 0 ){
                 setInput(string)
             }
         }
@@ -91,7 +92,7 @@ export default function Main (){
             }
             document.addEventListener("keydown", handleKeyPress );
             return () => {
-                              document.removeEventListener('keydown', handleKeyPress);
+                    document.removeEventListener('keydown', handleKeyPress);
                     };   
     },[input])
 
